@@ -1,4 +1,3 @@
-// src/cart.ts
 import { writable, get } from "svelte/store";
 
 // Definimos el tipo para los productos
@@ -61,23 +60,27 @@ async function placeOrder() {
   };
 
   try {
-    const response = await fetch("http://localhost:3000/order", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(order),
-    });
+    const response = await fetch(
+      "https://prueba-backend-linktic-production.up.railway.app/order",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(order),
+      }
+    );
 
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
 
     const data = await response.json();
-    console.log("Order placed successfully:", data);
+    console.log("Orden:", data);
+    alert("Orden procesada con exito...");
     clearCart(); // Vaciar el carrito después de realizar la compra
   } catch (error) {
-    console.error("There was a problem with the fetch operation:", error);
+    console.error(error);
   }
 }
 

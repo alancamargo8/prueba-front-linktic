@@ -3,7 +3,9 @@ import type { PageLoad } from "./$types";
 export const load: PageLoad = async ({ fetch, params }) => {
   let result;
   try {
-    const response = await fetch("http://localhost:3000/products");
+    const response = await fetch(
+      "https://prueba-backend-linktic-production.up.railway.app/products"
+    );
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
